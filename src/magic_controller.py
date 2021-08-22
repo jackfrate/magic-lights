@@ -49,4 +49,16 @@ class LightLister:
         change the brighness of a light
         """
         light = self.light_list[index]
-        light.brightness(brightness)
+        light.brightness = brightness
+
+    def get_light_status(self, index: int):
+        """
+        get the status of a light in a dictionary
+        """
+        light = self.light_list[index]
+        ret = {}
+        ret["bright"] = light.brightness
+        ret['r'] = light.rgb[0]
+        ret['g'] = light.rgb[1]
+        ret['b'] = light.rgb[2]
+        return ret
