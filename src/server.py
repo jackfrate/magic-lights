@@ -10,16 +10,13 @@ lc.refresh_list()
 
 @app.route('/ip_list')
 def ip_list():
-    return json.dumps({
-        "list": lc.get_ip_list()
-    })
+    return json.dumps(lc.get_ip_list())
 
 
 @app.route('/index_list')
 def index_list():
-    return json.dumps({
-        "list": lc.get_light_indicies()
-    })
+    return json.dumps(lc.get_light_indicies())
+
 
 @app.route('/light_status')
 def light_status():
