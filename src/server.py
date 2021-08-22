@@ -27,7 +27,11 @@ def change_color():
     r = data["r"]
     g = data["g"] 
     b = data["b"]
+    bright = data["brightness"]
     lc.change_color(r, g, b, index)
+    lc.change_brightness(bright, index)
     return json.dumps({
         "message": f'successfully changed light {index} color'
     })
+
+

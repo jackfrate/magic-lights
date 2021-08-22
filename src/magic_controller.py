@@ -29,6 +29,9 @@ class LightLister:
         return self.ip_list
 
     def refresh_list(self):
+        """
+        rescan the network for lights
+        """
         self.ip_list = discover_bulbs()
         self.light_list = [Light(ip) for ip in self.ip_list]
 
@@ -40,3 +43,10 @@ class LightLister:
         # make sure its not in white mode
         light.is_white = False 
         light.rgb = (r, g, b)
+    
+    def change_brightness(self, brightness: int, index: int):
+        """
+        change the brighness of a light
+        """
+        light = self.light_list[index]
+        light.brightness(brightness)
