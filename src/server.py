@@ -47,3 +47,4 @@ def change_bright():
 @app.route('/light_refresh')
 def refresh_lights():
     lc.refresh_list()
+    return json.dumps({"message": "list refreshed"})
