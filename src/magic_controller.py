@@ -63,4 +63,5 @@ class LightLister:
         ret['r'] = light.rgb[0]
         ret['g'] = light.rgb[1]
         ret['b'] = light.rgb[2]
+        ret['a'] = 255
         return ret

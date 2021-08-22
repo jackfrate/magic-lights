@@ -1,3 +1,5 @@
 magichue
 Flask 
 tinydb
+flask-cors
+

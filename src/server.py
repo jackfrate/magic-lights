@@ -1,8 +1,11 @@
 from src.magic_controller import LightLister
 from flask import Flask, request
+from flask_cors import CORS
+
 import json
 
 app = Flask(__name__)
+CORS(app)
 lc = LightLister()
 
 
@@ -16,11 +19,9 @@ def index_list():
     return json.dumps(lc.get_light_indicies())
 
 
-@app.route('/light_status/<index:int>')
-def light_status():
-    data = request.json
-    index = data['index']
-    return json.dumps(lc.get_light_status(index))
+@app.route('/light_status/<idx>')
+def light_status(idx):
+    return json.dumps(lc.get_light_status(int(idx)))
 
 
 @app.route('/light_color', methods=['POST'])
