@@ -27,4 +27,16 @@ class LightLister:
         get list of every ip
         """
         return self.ip_list
-    
+
+    def refresh_list(self):
+        self.ip_list = discover_bulbs()
+        self.light_list = [Light(ip) for ip in self.ip_list]
+
+    def change_color(self, r: int, g: int, b: int, index: int):
+        """
+        change color of a light with rgb values
+        """
+        light = self.light_list[index]
+        # make sure its not in white mode
+        light.is_white = False 
+        light.rgb = (r, g, b)
