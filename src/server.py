@@ -25,7 +25,7 @@ def light_status():
     return json.dumps(lc.get_light_status(index))
 
 
-@app.route('/light_color')
+@app.route('/light_color', methods=['POST'])
 def change_color():
     data = request.json
     index = data["index"]
@@ -33,14 +33,13 @@ def change_color():
     g = data["g"]
     b = data["b"]
     lc.change_color(r, g, b, index)
-    return json.dumps({
-        "message": f'successfully changed light {index} color'
-    })
+    return json.dumps({"message": f'successfully changed light {index} color'})
 
 
-@app.route('/light_bright')
+@app.route('/light_bright', methods=['POST'])
 def change_bright():
     data = request.json
     index = data['index']
     bright = data['bright']
     lc.change_brightness(bright, index)
+    return json.dumps({"message": f'successfully changed light {index} brightness'})
