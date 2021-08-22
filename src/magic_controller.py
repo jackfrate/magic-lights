@@ -6,9 +6,11 @@ from magichue import discover_bulbs, Light
 
 
 class LightLister:
+    # this needs to be static || im tripping
+    ip_list = discover_bulbs()
+
     def __init__(self):
-        self.ip_list = discover_bulbs()
-        self.light_list = [Light(ip) for ip in self.ip_list]
+        self.refresh_list()
 
     def get_light(self, index: int):
         """
@@ -32,7 +34,7 @@ class LightLister:
         """
         rescan the network for lights
         """
-        self.ip_list = discover_bulbs()
+        # self.ip_list = discover_bulbs()
         self.light_list = [Light(ip) for ip in self.ip_list]
 
     def change_color(self, r: int, g: int, b: int, index: int):

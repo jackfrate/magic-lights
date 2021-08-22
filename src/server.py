@@ -3,9 +3,7 @@ from flask import Flask, request
 import json
 
 app = Flask(__name__)
-
 lc = LightLister()
-lc.refresh_list()
 
 
 @app.route('/ip_list')
@@ -18,7 +16,7 @@ def index_list():
     return json.dumps(lc.get_light_indicies())
 
 
-@app.route('/light_status')
+@app.route('/light_status/<index:int>')
 def light_status():
     data = request.json
     index = data['index']
@@ -43,6 +41,7 @@ def change_bright():
     bright = data['bright']
     lc.change_brightness(bright, index)
     return json.dumps({"message": f'successfully changed light {index} brightness'})
+
 
 @app.route('/light_refresh')
 def refresh_lights():
