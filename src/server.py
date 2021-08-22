@@ -43,3 +43,7 @@ def change_bright():
     bright = data['bright']
     lc.change_brightness(bright, index)
     return json.dumps({"message": f'successfully changed light {index} brightness'})
+
+@app.route('/light_refresh')
+def refresh_lights():
+    lc.refresh_list()
